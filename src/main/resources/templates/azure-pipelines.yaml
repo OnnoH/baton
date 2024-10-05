@@ -1,0 +1,14 @@
+trigger:
+  - 'main'
+
+resources:
+  repositories:
+    - repository: insurance-pension-pipelines
+      type: git
+      name: Insurance-Pension/insurance-pension-pipelines
+      ref: master
+
+parameters:
+  - name: applicationName
+    type: string
+    default: '{{projectName}}'

@@ -1,0 +1,9 @@
+azdo:
+  org: raboweb
+  project: Insurance-Pension
+  api-version: ${azdo.project}
+  pat: ${AZDO_PAT}
+
+kafka:
+  bootstrap-servers: localhost:9092
+  topic: insurance-pension

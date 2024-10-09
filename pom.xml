@@ -20,9 +20,9 @@
         <jackson.version>2.16.1</jackson.version>
         <graal-vm.version>23.1.1</graal-vm.version>
         <snakeyaml.version>2.2</snakeyaml.version>
-        <camunda.version>8.6.0-rc1</camunda.version>
         <junit.version>4.13.2</junit.version>
         <assertj.version>3.22.0</assertj.version>
+        <gson.version>2.11.0</gson.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-native-plugin.version>0.9.28</maven-native-plugin.version>
         <maven-exec-plugin.version>3.1.1</maven-exec-plugin.version>
@@ -75,11 +75,6 @@
             <version>${snakeyaml.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.camunda</groupId>
-            <artifactId>zeebe-bpmn-model</artifactId>
-            <version>${camunda.version}</version>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
@@ -89,6 +84,11 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
         </dependency>
     </dependencies>
     <build>
@@ -145,7 +145,7 @@
                         <enabled>true</enabled>
                     </metadataRepository>
                     <imageName>${project.name}</imageName>
-                    <mainClass>nl.rabobank.retail.insurance.Main</mainClass>
+                    <mainClass>nl.onnoh.baton.Main</mainClass>
                     <buildArgs>
 <!--                        <buildArg>-H:+PrintAnalysisCallTree</buildArg>-->
                         <buildArg>-H:+UnlockExperimentalVMOptions</buildArg>

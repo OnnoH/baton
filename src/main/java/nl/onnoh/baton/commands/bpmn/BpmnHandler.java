@@ -29,11 +29,6 @@ public class BpmnHandler extends DefaultHandler {
         }
     }
 
-//    @Override
-//    public void startDocument() throws SAXException {
-//        bpmnElement = new BpmnElement();
-//    }
-
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
@@ -82,7 +77,7 @@ public class BpmnHandler extends DefaultHandler {
         for (int i = 0; i < attributes.getLength(); i++) {
             if (attributes.getValue(i).equals(uri)) {
                 return attributes.getQName(i).replaceAll("xmlns:", "");
-            };
+            }
         }
         return "";
     }

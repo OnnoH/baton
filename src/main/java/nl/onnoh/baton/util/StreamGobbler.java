@@ -1,4 +1,4 @@
-package nl.rabobank.retail.insurance.util;
+package nl.onnoh.baton.util;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -1,8 +1,8 @@
-package nl.rabobank.retail.insurance;
+package nl.onnoh.baton;
 
-import nl.rabobank.retail.insurance.commands.banner.BannerCommand;
-import nl.rabobank.retail.insurance.commands.bpmn.AnalyseCommand;
-import nl.rabobank.retail.insurance.commands.scaffold.ScaffoldCommand;
+import nl.onnoh.baton.commands.banner.BannerCommand;
+import nl.onnoh.baton.commands.bpmn.AnalyseCommand;
+import nl.onnoh.baton.commands.scaffold.ScaffoldCommand;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;

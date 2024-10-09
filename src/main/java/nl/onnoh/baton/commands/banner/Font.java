@@ -1,4 +1,4 @@
-package nl.rabobank.retail.insurance.commands.banner;
+package nl.onnoh.baton.commands.banner;
 
 public enum Font {
     STANDARD("standard"),

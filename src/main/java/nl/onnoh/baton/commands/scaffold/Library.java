@@ -1,4 +1,4 @@
-package nl.rabobank.retail.insurance.commands.scaffold;
+package nl.onnoh.baton.commands.scaffold;
 
 public enum Library {
     ZEEBE("zeebe"),

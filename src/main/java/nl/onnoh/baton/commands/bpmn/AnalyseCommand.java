@@ -1,24 +1,11 @@
-package nl.rabobank.retail.insurance.commands.bpmn;
+package nl.onnoh.baton.commands.bpmn;
 
-import io.camunda.zeebe.model.bpmn.Bpmn;
-import io.camunda.zeebe.model.bpmn.BpmnModelInstance;
-import io.camunda.zeebe.model.bpmn.impl.BpmnModelConstants;
-import io.camunda.zeebe.model.bpmn.impl.ZeebeConstants;
-import io.camunda.zeebe.model.bpmn.instance.BaseElement;
-import io.camunda.zeebe.model.bpmn.instance.BusinessRuleTask;
-import io.camunda.zeebe.model.bpmn.instance.CallActivity;
-import io.camunda.zeebe.model.bpmn.instance.SendTask;
-import io.camunda.zeebe.model.bpmn.instance.ServiceTask;
-import io.camunda.zeebe.model.bpmn.instance.Task;
-import nl.rabobank.retail.insurance.util.Figlet;
-import org.camunda.bpm.model.xml.instance.ModelElementInstance;
-import org.camunda.bpm.model.xml.type.ModelElementType;
+import com.google.gson.Gson;
 import picocli.CommandLine;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
-import java.util.Collection;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "analyse", description = "Analyse a BPMN file.")
@@ -60,8 +47,9 @@ public class AnalyseCommand implements Callable<Integer> {
         SAXParser saxParser = factory.newSAXParser();
         BpmnHandler bpmnHandler = new BpmnHandler();
         saxParser.parse(bpmnFile, bpmnHandler);
-        BpmnElement bpmnElement = bpmnHandler.getBpmnElement();
-        System.out.println(bpmnElement.getTasks());
+        Bpmn bpmn = bpmnHandler.getBpmn();
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(bpmn));
 
 //        System.out.println("File found: " + bpmnFile);
 //        BpmnModelInstance modelInstance = Bpmn.readModelFromFile(file);
@@ -117,23 +105,23 @@ public class AnalyseCommand implements Callable<Integer> {
         return 0;
     }
 
-    private void getWorker(Task task) {
-        String worker = "none";
-        for (ModelElementInstance ee : task.getExtensionElements().getElements()) {
-            if (ZeebeConstants.ELEMENT_TASK_DEFINITION.equals(ee.getElementType().getTypeName())) {
-                worker = ee.getAttributeValue(BpmnModelConstants.BPMN_ATTRIBUTE_TYPE);
-            }
-        }
-        System.out.println("worker : " + worker);
-    }
-
-    private void getTemplate(Task task) {
-        String template = task.getAttributeValueNs(BpmnModelConstants.ZEEBE_NS, ZEEBE_TEMPLATE);
-        if (template == null || template.isEmpty() || template.isBlank()) {
-            template = "none";
-        }
-        System.out.println("template : " + template);
-    }
+//    private void getWorker(Task task) {
+//        String worker = "none";
+//        for (ModelElementInstance ee : task.getExtensionElements().getElements()) {
+//            if (ZeebeConstants.ELEMENT_TASK_DEFINITION.equals(ee.getElementType().getTypeName())) {
+//                worker = ee.getAttributeValue(BpmnModelConstants.BPMN_ATTRIBUTE_TYPE);
+//            }
+//        }
+//        System.out.println("worker : " + worker);
+//    }
+//
+//    private void getTemplate(Task task) {
+//        String template = task.getAttributeValueNs(BpmnModelConstants.ZEEBE_NS, ZEEBE_TEMPLATE);
+//        if (template == null || template.isEmpty() || template.isBlank()) {
+//            template = "none";
+//        }
+//        System.out.println("template : " + template);
+//    }
 
 
 }

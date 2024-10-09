@@ -1,4 +1,4 @@
-package nl.rabobank.retail.insurance.commands.scaffold;
+package nl.onnoh.baton.commands.scaffold;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -19,7 +19,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
-import static nl.rabobank.retail.insurance.util.Figlet.createFiglet;
+import static nl.onnoh.baton.util.Figlet.createFiglet;
 
 @Command(name = "scaffold")
 public class ScaffoldCommand implements Callable<Integer> {

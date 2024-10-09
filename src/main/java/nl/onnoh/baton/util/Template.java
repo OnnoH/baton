@@ -1,4 +1,4 @@
-package nl.rabobank.retail.insurance.util;
+package nl.onnoh.baton.util;
 
 import com.samskivert.mustache.Mustache;
 
@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static nl.rabobank.retail.insurance.util.Resource.filterResources;
+import static nl.onnoh.baton.util.Resource.filterResources;
 
 public class Template {
 

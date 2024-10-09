@@ -1,8 +1,8 @@
-package nl.rabobank.retail.insurance.commands.banner;
+package nl.onnoh.baton.commands.banner;
 
 import com.github.lalyos.jfiglet.FigletFont;
-import nl.rabobank.retail.insurance.util.Figlet;
-import nl.rabobank.retail.insurance.util.Resource;
+import nl.onnoh.baton.util.Figlet;
+import nl.onnoh.baton.util.Resource;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;

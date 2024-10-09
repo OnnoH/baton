@@ -1,4 +1,4 @@
-package nl.rabobank.retail.insurance.commands.azdo;
+package nl.onnoh.baton.commands.azdo;
 
 public class WorkItem {
     private String id;

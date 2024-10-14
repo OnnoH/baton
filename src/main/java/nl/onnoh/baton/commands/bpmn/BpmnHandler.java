@@ -5,7 +5,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static nl.onnoh.baton.commands.bpmn.BpmnModelConstants.*;
 import static nl.onnoh.baton.commands.bpmn.BpmnModelZeebeConstants.*;
@@ -19,6 +21,9 @@ public class BpmnHandler extends DefaultHandler {
     private boolean rootElementProcessed = false;
     private String bpmnNamespace = "";
     private String zeebeNamespace = "";
+    private Map<String, String> input;
+    private Map<String, String> output;
+    private Map<String, String> headers;
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
@@ -51,6 +56,17 @@ public class BpmnHandler extends DefaultHandler {
         } else if (getZeebeElement(ZEEBE_TASK_DEFINITION).equals(qName)) {
             String workerName = attributes.getValue("type");
             bpmnElement.setWorker(workerName);
+        } else if (getZeebeElement(ZEEBE_IO_MAPPING).equals(qName)) {
+            input = new HashMap<>();
+            output = new HashMap<>();
+        } else if (getZeebeElement(ZEEBE_IO_MAPPING_INPUT).equals(qName)) {
+            input.put(attributes.getValue("target"), attributes.getValue("source"));
+        } else if (getZeebeElement(ZEEBE_IO_MAPPING_OUTPUT).equals(qName)) {
+            output.put(attributes.getValue("target"), attributes.getValue("source"));
+        } else if (getZeebeElement(ZEEBE_IO_TASK_HEADERS).equals(qName)) {
+            headers = new HashMap<>();
+        } else if (getZeebeElement(ZEEBE_IO_TASK_HEADER).equals(qName)) {
+            headers.put(attributes.getValue("key"), attributes.getValue("value"));
         }
     }
 
@@ -65,6 +81,10 @@ public class BpmnHandler extends DefaultHandler {
                 || getBpmnElement(BPMN_ELEMENT_USER_TASK).equals(qName)
         ) {
             bpmnElements.add(bpmnElement);
+        } else if (getBpmnElement(BPMN_ELEMENT_EXTENSION_ELEMENTS).equals(qName)) {
+            bpmnElement.setInput(input);
+            bpmnElement.setOutput(output);
+            bpmnElement.setHeaders(headers);
         }
 
     }
